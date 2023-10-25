@@ -1,14 +1,13 @@
 import axios from 'axios';
-import { AUTHTOKEN, BASEURL } from '../../share/AUTH_BASEURL';
+import { AUTHTOKEN, BASEURL } from '@/share/AUTH_BASEURL';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-export const fetchBlogData = createAsyncThunk(
-    'BlogData/fetchBlogData',
-    async (dataSend?: { [key: string]: (string | number)[] }) => {
-
+export const fetchVoyageOptionsData = createAsyncThunk(
+    'voyageOptions/fetchVoyageOptionsData',
+    async (dataSend?: { [key: string]: string[] }) => {
         try {
             const response = await axios.post(
-                `${BASEURL}/blog/`,
+                `${BASEURL}/voyage/`,
                 dataSend,
                 {
                     headers: {
@@ -16,11 +15,11 @@ export const fetchBlogData = createAsyncThunk(
                         "Content-Type": "application/json"
                     }
                 }
-
             );
+
             return response.data;
         } catch (error) {
-            throw new Error('Failed to fetch fetchBlogData data');
+            throw new Error('Failed to fetchVoyageOptionsData data');
         }
     }
 );
